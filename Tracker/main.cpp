@@ -3,6 +3,7 @@
 #include <curl/curl.h>
 #include <fstream>
 #include "../nlohmann/json.hpp"
+#include <filesystem>
 
 using std::cout; using std::cin; using std::endl;
 using std::string;
@@ -17,8 +18,16 @@ int main() {
     string commits = "https://api.github.com/repos/AndrewRoddy/MyLlama/commits";
     string repos = "https://api.github.com/users/AndrewRoddy/repos";
 
+    if (std::filesystem::exists("..\\TOKENS.env")) { // Where my tokens are stored
+        std::cout << "File exists!" << std::endl;
+    } else {
+        std::cout << "File does not exist!" << std::endl;
+    }
+
     getJson(events, readBuffer);
     
+    
+
     nlohmann::json jsonData = nlohmann::json::parse(readBuffer);
     // Output the JSON data
     //std::cout << std::setw(4) << jsonData << std::endl;  // Pretty print the JSON

@@ -1,5 +1,18 @@
 # Daily-Commit-Tracker
- 
+
+# App Installation
+**Github Access Token**
+If you want to count commits for private repositories use this method
+1. Go to [Github Developer Settings](https://github.com/settings/tokens)
+2. Click `Generate new token (classic)`
+3. Name the token
+4. Set the expiration to any time. 
+ - Longer experiration: less hassle
+ - Shorter expiration: more secure
+5. Under select scopes check [X]`repo:status`
+7. Generate Token
+8. Place your token in the "token" file
+
 # Binary Installation
 **libcurl**
 1. Download libcurl `curl-8.10.1`

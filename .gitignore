@@ -4,3 +4,5 @@ curl
 
 curl-ca-bundle.crt
 cacert.pem
+
+TOKENS.env
