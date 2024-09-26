@@ -11,7 +11,7 @@ If you want to count commits for private repositories use this method
  - Shorter expiration: more secure
 5. Under select scopes check [X]`repo:status`
 7. Generate Token
-8. Place your token in the "token" file
+8. Place your token in the "TOKEN.env" file
 
 # Binary Installation
 **libcurl**
