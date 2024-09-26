@@ -1,32 +1,52 @@
 #include <iostream>
 #include <string>
-#include "C:\\.Coding\\Daily-Commit-Tracker\\curl-8.10.1_1-win64-mingw\\include\\curl\\curl.h"
 #include <curl/curl.h>
-
 #include <fstream>
+#include "../nlohmann/json.hpp"
 
 using std::cout; using std::cin; using std::endl;
 using std::string;
 
-
-// Callback function to handle the incoming data
-static size_t WriteCallback(void* contents, size_t size, size_t nmemb, std::string* userData) {
-    size_t totalSize = size * nmemb;
-    userData->append((char*)contents, totalSize);
-    return totalSize;
-}
+static size_t WriteCallback(void*,size_t,size_t,string*);
+void getJson(string url, string& readBuffer);
 
 int main() {
+    string readBuffer;
+
+    string events = "https://api.github.com/users/AndrewRoddy/events";
+    string commits = "https://api.github.com/repos/AndrewRoddy/MyLlama/commits";
+    string repos = "https://api.github.com/users/AndrewRoddy/repos";
+
+    getJson(events, readBuffer);
+    
+    nlohmann::json jsonData = nlohmann::json::parse(readBuffer);
+    // Output the JSON data
+    //std::cout << std::setw(4) << jsonData << std::endl;  // Pretty print the JSON
+    for (const auto& event : jsonData) {
+        std::cout << std::setw(4) << event["created_at"] << std::endl;
+
+        // For the commits link
+        //std::cout << std::setw(4) << event["commit"]["author"]["date"] << std::endl;
+    }
+    return 0;
+}
+
+// Gets a Json
+// Code taken from the internet.
+// Curl is a nightmare!
+// I added the parameter though :)
+void getJson(string url, string& readBuffer){ 
     CURL* curl;
     curl = curl_easy_init();
 
     CURLcode res;
     
-    string readBuffer;
+    
 
     if (curl) { // Initialize CURL
+
         // Set the URL
-        curl_easy_setopt(curl, CURLOPT_URL, "https://api.github.com/users/AndrewRoddy/events");
+        curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
 
         // Specify the callback function to write the data
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
@@ -59,10 +79,12 @@ int main() {
         // Cleanup
         curl_easy_cleanup(curl);
     }
-
-    return 0;
 }
 
-
-    
-   
+// Callback function to handle the incoming data
+// Code completely taken from the internet
+static size_t WriteCallback(void* contents, size_t size, size_t nmemb, std::string* userData) {
+    size_t totalSize = size * nmemb;
+    userData->append((char*)contents, totalSize);
+    return totalSize;
+}
