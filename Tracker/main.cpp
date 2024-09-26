@@ -6,6 +6,9 @@
 #include <filesystem>
 #include <algorithm>
 #include <vector>
+#include <ctime>
+#include <iomanip>
+#include <sstream>
 
 using std::cout; using std::cin; using std::endl;
 using std::string;
@@ -17,32 +20,58 @@ string getToken();
 
 int main() {
     string token = getToken();
-    string repositories = "https://api.github.com/user/repos?type=all&page=&per_page=1000";
     string readBuffer;
+
+    string repositories_url = "https://api.github.com/user/repos?type=all&page=&per_page=1000";
+    string commits_url;
+    
     string repository;
-    string url_max;
-    bool commited_today = false;
     string name = "repos";
     string repo_list = "|";
     std::vector<string> repos;
-    getJson(name, repositories, token, readBuffer);
+    bool commited_today = false;
+
+    std::time_t now = std::time(nullptr);
+    std::tm* utcTime = std::gmtime(&now);
+    std::ostringstream oss;
+    oss << std::put_time(utcTime, "%Y-%m-%d");
+    string today = oss.str();
+    cout << today;
+    
+    getJson(name, repositories_url, token, readBuffer);
     nlohmann::json jsonData = nlohmann::json::parse(readBuffer);
-    for (const auto& event : jsonData) {  // Output the JSON data
-        //std::cout << std::setw(4) << event["name"] << std::endl;
-        repository = event["name"];
-        repos.push_back(repository);
-        //cout << repository << endl;
-        //repo_list += repository + "|";
-        //url_max = "https://api.github.com/repos/AndrewRoddy/" + repository + "/commits";
-        //getJson(repository, url_max, token, readBuffer);
-        //nlohmann::json repoData = nlohmann::json::parse(readBuffer);
+    for (const auto& event : jsonData) {
+        repository = event["name"]; // Gets repository name
+        repos.push_back(repository); // Adds repository to list
+    }
+    for(int i = 0; i < repos.size(); i++){
+        readBuffer = "";
+        readBuffer.clear();
+        cout << endl << endl << repos[i] << endl << endl;
+        commits_url = "https://api.github.com/repos/AndrewRoddy/" + repos[i] + "/commits";
+        getJson(repos[i], commits_url, token, readBuffer);
+        nlohmann::json jsonData = nlohmann::json::parse(readBuffer);
+        string date;
+        string long_date;
+        for (const auto& event : jsonData) {
+            try{
+            long_date = event["commit"]["committer"]["date"];
+            date = long_date.substr(0, 10);
+            cout << date.substr(0, 10) << "||";
+            } catch (...){
+                cout << "Whoops!" << endl;
+            }
+            if (date == today){
+                cout << "You commited today!";
+                return 0;
+            }
+        }
+        
+        
         //for (const auto& commit : repoData) {
         //    std::cout << std::setw(4) << commit << std::endl;
     }
-
-    for(int i = 0; i < repos.size(); i++){
-        cout << repos[i] << endl;
-    }
+    
     //cout << commited_today << endl;
     //cout << repo_list << endl;
     return 0;
@@ -110,12 +139,12 @@ void getJson(string name, string url, string token, string& readBuffer){
             std::cerr << "curl_easy_perform() failed: " << curl_easy_strerror(res) << std::endl;
         } else {
             // Save the received JSON data to a file
-            string total_name = name + ".json";
+            string total_name = "json/" + name + ".json";
             std::ofstream outFile(total_name);
             if (outFile.is_open()) {
                 outFile << readBuffer;
                 outFile.close();
-                std::cout << "JSON data saved to events.json" << std::endl;
+                //std::cout << "JSON data saved to json/" << name << ".json" << std::endl;
             } else {
                 std::cerr << "Failed to open events.json for writing" << std::endl;
             }
