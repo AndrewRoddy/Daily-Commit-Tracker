@@ -10,47 +10,37 @@ using std::cout; using std::cin; using std::endl;
 using std::string;
 
 static size_t WriteCallback(void*,size_t,size_t,string*);
-void getJson(string url, string token, string& readBuffer);
+void getJson(string name, string url, string token, string& readBuffer);
+string getTokenPath();
+string getToken();
 
 int main() {
-    
-    std::ifstream file(getTokenPath());
-    std::string token;
-    if (file.is_open()) {
-        std::string line;
-        while (getline(file, line)) {
-            if (line.find("GITHUB_TOKEN=") != std::string::npos) {
-                token = line.substr(line.find('=') + 1);
-                break;
-            }
-        }
-        file.close();
-    } else {
-        std::cerr << "Unable to open token file." << std::endl;
-    }
-    //cout << token;
-
-    string readBuffer;
-
-    string commits = "https://api.github.com/repos/AndrewRoddy/Daily-Commit-Tracker/commits";
+    string token = getToken();
     string repos = "https://api.github.com/users/AndrewRoddy/repos";
-
-    
-
-    getJson(repos, token, readBuffer);
-    
-    
-
+    string readBuffer;
+    string repoBuffer;
+    string repository;
+    string url_max;
+    bool commited_today = false;
+    string name = "repos";
+    string repo_list = "|";
+    getJson(name, repos, token, readBuffer);
     nlohmann::json jsonData = nlohmann::json::parse(readBuffer);
-    // Output the JSON data
-    //std::cout << std::setw(4) << jsonData << std::endl;  // Pretty print the JSON
-    //for (const auto& event : jsonData) {
-    //    std::cout << std::setw(4) << event["created_at"] << std::endl;
+    for (const auto& event : jsonData) {  // Output the JSON data
+        //std::cout << std::setw(4) << event["name"] << std::endl;
+        repository = event["name"];
+        cout << repository << endl;
+        //repo_list += repository + "|";
+        url_max = "https://api.github.com/repos/AndrewRoddy/" + repository + "/commits";
+        //getJson(repository, url_max, token, readBuffer);
+        //nlohmann::json repoData = nlohmann::json::parse(repoBuffer);
+        //for (const auto& commit : repoData) {
+        //    std::cout << std::setw(4) << commit << std::endl;
+        //}
+    }
 
-        //For the commits link
-    //    std::cout << std::setw(4) << event["commit"]["author"]["date"] << std::endl;
-    //}
-
+    cout << commited_today << endl;
+    cout << repo_list << endl;
     return 0;
 }
 
@@ -63,11 +53,28 @@ string getTokenPath(){
     }
 }
 
+// Gets the token
+string getToken(){
+    std::ifstream file(getTokenPath());
+        std::string token;
+        if (file.is_open()) {
+            std::string line;
+            while (getline(file, line)) {
+                if (line.find("GITHUB_TOKEN=") != std::string::npos) {
+                    token = line.substr(line.find('=') + 1);
+                    break;
+                }
+            }
+            file.close();
+        } else {
+            std::cerr << "Unable to open token file." << std::endl;
+        }
+    return token;
+}
+
 // Gets a Json
-// Code taken from the internet.
-// Curl is a nightmare!
-// I added the parameter though :)
-void getJson(string url, string token, string& readBuffer){ 
+// Code taken from the internet. (I added the parameters though)
+void getJson(string name, string url, string token, string& readBuffer){ 
     CURL* curl;
     CURLcode res;
 
@@ -76,11 +83,6 @@ void getJson(string url, string token, string& readBuffer){
 
         // Set the URL
         curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
-        //curl_easy_setopt(curl, CURLOPT_URL, "https://api.github.com/user/repos");
-
-        // Specify the callback function to write the data
-        //curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
-        //curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
 
         // Sets authorization
         std::string authHeader = "Authorization: token " + token;
@@ -90,10 +92,6 @@ void getJson(string url, string token, string& readBuffer){
         headers = curl_slist_append(headers, "User-Agent: AndrewRoddy");
 
         curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
-
-        // Set the user agent
-        //curl_easy_setopt(curl, CURLOPT_USERAGENT, "Mozilla/5.0");
-        //curl_easy_setopt(curl, CURLOPT_USERAGENT, "curl/8.10.1");
 
         // Set the CA certificates path (adjust this path as needed)
         curl_easy_setopt(curl, CURLOPT_CAINFO, "C:\\.Coding\\Daily-Commit-Tracker\\curl-8.10.1_1-win64-mingw\\cacert.pem");
@@ -109,7 +107,8 @@ void getJson(string url, string token, string& readBuffer){
             std::cerr << "curl_easy_perform() failed: " << curl_easy_strerror(res) << std::endl;
         } else {
             // Save the received JSON data to a file
-            std::ofstream outFile("events.json");
+            string total_name = name + ".json";
+            std::ofstream outFile(total_name);
             if (outFile.is_open()) {
                 outFile << readBuffer;
                 outFile.close();
@@ -124,7 +123,6 @@ void getJson(string url, string token, string& readBuffer){
     }
 }
 
-// Callback function to handle the incoming data
 // Code completely taken from the internet
 static size_t WriteCallback(void* contents, size_t size, size_t nmemb, std::string* userData) {
     size_t totalSize = size * nmemb;
