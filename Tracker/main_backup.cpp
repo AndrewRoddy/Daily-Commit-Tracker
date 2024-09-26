@@ -3,19 +3,14 @@
 #include "C:\\.Coding\\Daily-Commit-Tracker\\curl-8.10.1_1-win64-mingw\\include\\curl\\curl.h"
 #include <fstream>
 
-using std::string;
-
-void getJson(string url);
-static size_t WriteCallback(void*, size_t, size_t, string*);
-
-
-int main() {
-    string url = "https://api.github.com/users/AndrewRoddy/events";
-    getJson(url);
-    return 0;
+// Callback function to handle the incoming data
+static size_t WriteCallback(void* contents, size_t size, size_t nmemb, std::string* userData) {
+    size_t totalSize = size * nmemb;
+    userData->append((char*)contents, totalSize);
+    return totalSize;
 }
 
-void getJson(string url){
+int main() {
     CURL* curl;
     CURLcode res;
     std::string readBuffer;
@@ -24,7 +19,7 @@ void getJson(string url){
     curl = curl_easy_init();
     if (curl) {
         // Set the URL
-        curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+        curl_easy_setopt(curl, CURLOPT_URL, "https://api.github.com/users/AndrewRoddy/events");
 
         // Specify the callback function to write the data
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
@@ -59,11 +54,5 @@ void getJson(string url){
         curl_easy_cleanup(curl);
     }
 
-}
-
-// Callback function to handle the incoming data
-static size_t WriteCallback(void* contents, size_t size, size_t nmemb, std::string* userData) {
-    size_t totalSize = size * nmemb;
-    userData->append((char*)contents, totalSize);
-    return totalSize;
+    return 0;
 }
