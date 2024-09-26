@@ -6,16 +6,15 @@
             "command": "C:\\msys64\\ucrt64\\bin\\g++.exe",
             "args": [
                 "-fdiagnostics-color=always",
-                "-g",
-                "${fileDirname}/**.cpp",
+                "-g", "${file}",
                 "-I${workspaceFolder}/curl/curl-8.10.1_1-win64-mingw/curl-8.10.1_1-win64-mingw/include",   // Include curl headers
                 "-L${workspaceFolder}/curl/curl-8.10.1_1-win64-mingw/curl-8.10.1_1-win64-mingw/lib",       // Library path for curl
                 "-lcurl", // Link with curl library
                 "-o",
-                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+                "${fileDirname}/${fileBasenameNoExtension}.exe"
             ],
             "options": {
-                "cwd": "${fileDirname}"
+                "cwd": "${workspaceFolder}/Tracker" // Set the current working directory
             },
             "problemMatcher": [
                 "$gcc"
