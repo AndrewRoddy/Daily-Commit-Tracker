@@ -1,30 +1,32 @@
 #include <iostream>
 #include <string>
 #include "C:\\.Coding\\Daily-Commit-Tracker\\curl-8.10.1_1-win64-mingw\\include\\curl\\curl.h"
+#include <curl/curl.h>
+
 #include <fstream>
 
+using std::cout; using std::cin; using std::endl;
 using std::string;
 
-void getJson(string url);
-static size_t WriteCallback(void*, size_t, size_t, string*);
 
-
-int main() {
-    string url = "https://api.github.com/users/AndrewRoddy/events";
-    getJson(url);
-    return 0;
+// Callback function to handle the incoming data
+static size_t WriteCallback(void* contents, size_t size, size_t nmemb, std::string* userData) {
+    size_t totalSize = size * nmemb;
+    userData->append((char*)contents, totalSize);
+    return totalSize;
 }
 
-void getJson(string url){
+int main() {
     CURL* curl;
-    CURLcode res;
-    std::string readBuffer;
-
-    // Initialize CURL
     curl = curl_easy_init();
-    if (curl) {
+
+    CURLcode res;
+    
+    string readBuffer;
+
+    if (curl) { // Initialize CURL
         // Set the URL
-        curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+        curl_easy_setopt(curl, CURLOPT_URL, "https://api.github.com/users/AndrewRoddy/events");
 
         // Specify the callback function to write the data
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
@@ -34,10 +36,9 @@ void getJson(string url){
         curl_easy_setopt(curl, CURLOPT_USERAGENT, "Mozilla/5.0");
 
         // Set the CA certificates path (adjust this path as needed)
-        curl_easy_setopt(curl, CURLOPT_CAINFO, "C:\\curl\\cacert.pem");
+        curl_easy_setopt(curl, CURLOPT_CAINFO, "C:\\.Coding\\Daily-Commit-Tracker\\curl-8.10.1_1-win64-mingw\\cacert.pem");
 
         // Perform the request
-        curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
         res = curl_easy_perform(curl);
 
         // Check for errors
@@ -59,11 +60,9 @@ void getJson(string url){
         curl_easy_cleanup(curl);
     }
 
+    return 0;
 }
 
-// Callback function to handle the incoming data
-static size_t WriteCallback(void* contents, size_t size, size_t nmemb, std::string* userData) {
-    size_t totalSize = size * nmemb;
-    userData->append((char*)contents, totalSize);
-    return totalSize;
-}
+
+    
+   
