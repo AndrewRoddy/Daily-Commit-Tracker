@@ -5,6 +5,7 @@
 #include "../nlohmann/json.hpp"
 #include <filesystem>
 #include <algorithm>
+#include <vector>
 
 using std::cout; using std::cin; using std::endl;
 using std::string;
@@ -16,18 +17,20 @@ string getToken();
 
 int main() {
     string token = getToken();
-    string repos = "https://api.github.com/user/repos?type=all&page=&per_page=1000";
+    string repositories = "https://api.github.com/user/repos?type=all&page=&per_page=1000";
     string readBuffer;
     string repository;
     string url_max;
     bool commited_today = false;
     string name = "repos";
     string repo_list = "|";
-    getJson(name, repos, token, readBuffer);
-    //nlohmann::json jsonData = nlohmann::json::parse(readBuffer);
-    //for (const auto& event : jsonData) {  // Output the JSON data
+    std::vector<string> repos;
+    getJson(name, repositories, token, readBuffer);
+    nlohmann::json jsonData = nlohmann::json::parse(readBuffer);
+    for (const auto& event : jsonData) {  // Output the JSON data
         //std::cout << std::setw(4) << event["name"] << std::endl;
-        //repository = event["name"];
+        repository = event["name"];
+        repos.push_back(repository);
         //cout << repository << endl;
         //repo_list += repository + "|";
         //url_max = "https://api.github.com/repos/AndrewRoddy/" + repository + "/commits";
@@ -35,9 +38,11 @@ int main() {
         //nlohmann::json repoData = nlohmann::json::parse(readBuffer);
         //for (const auto& commit : repoData) {
         //    std::cout << std::setw(4) << commit << std::endl;
-        //}
-    //}
+    }
 
+    for(int i = 0; i < repos.size(); i++){
+        cout << repos[i] << endl;
+    }
     //cout << commited_today << endl;
     //cout << repo_list << endl;
     return 0;
