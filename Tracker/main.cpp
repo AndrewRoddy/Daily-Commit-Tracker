@@ -1,80 +1,75 @@
 #include <iostream>
 #include <string>
-#include <curl/curl.h>
-#include <fstream>
-#include "../nlohmann/json.hpp"
-#include <filesystem>
-#include <algorithm>
 #include <vector>
-#include <ctime>
-#include <iomanip>
-#include <sstream>
+#include <curl/curl.h> // Used for HTTP requests
+#include <fstream> // File IO
+#include "../nlohmann/json.hpp" // Read .json files
+#include <filesystem> // Just to check for TOKEN.env
+#include <ctime> // Gets today's time
+#include <sstream> // For concatenating times
 
-using std::cout; using std::cin; using std::endl;
-using std::string;
+using std::cout; using std::cin; using std::endl; using std::string;
 
 static size_t WriteCallback(void*,size_t,size_t,string*);
-void getJson(string name, string url, string token, string& readBuffer);
-string getTokenPath();
-string getToken();
+void getJson(string name, string url, string token, string& readBuffer); // Gets a json file
+string getTokenPath(); // Gets the correct token path
+string getToken(); // Gets the token
+
+string getUtcToday();
 
 int main() {
     string token = getToken();
     string readBuffer;
-
     string repositories_url = "https://api.github.com/user/repos?type=all&page=&per_page=1000";
     string commits_url;
-    
     string repository;
     string name = "repos";
     string repo_list = "|";
     std::vector<string> repos;
     bool commited_today = false;
-
-    std::time_t now = std::time(nullptr);
-    std::tm* utcTime = std::gmtime(&now);
-    std::ostringstream oss;
-    oss << std::put_time(utcTime, "%Y-%m-%d");
-    string today = oss.str();
-    cout << today;
+    string today = getUtcToday();
     
+    cout << endl << "Getting repos.";
     getJson(name, repositories_url, token, readBuffer);
     nlohmann::json jsonData = nlohmann::json::parse(readBuffer);
     for (const auto& event : jsonData) {
         repository = event["name"]; // Gets repository name
         repos.push_back(repository); // Adds repository to list
+        cout << '.';
     }
     for(int i = 0; i < repos.size(); i++){
-        readBuffer = "";
-        readBuffer.clear();
-        cout << endl << endl << repos[i] << endl << endl;
-        commits_url = "https://api.github.com/repos/AndrewRoddy/" + repos[i] + "/commits";
+        readBuffer = ""; readBuffer.clear(); // Completely clears readBuffer
+        commits_url = "https://api.github.com/repos/AndrewRoddy/" + repos[i] + "/commits"; // Creates proper repo url
         getJson(repos[i], commits_url, token, readBuffer);
         nlohmann::json jsonData = nlohmann::json::parse(readBuffer);
+        cout << endl << "Getting commits from " << repos[i] << '.';
         string date;
         string long_date;
         for (const auto& event : jsonData) {
+            cout << '.';
             try{
             long_date = event["commit"]["committer"]["date"];
             date = long_date.substr(0, 10);
-            cout << date.substr(0, 10) << "||";
             } catch (...){
-                cout << "Whoops!" << endl;
+                cout << " ";
             }
             if (date == today){
-                cout << "You commited today!";
+                cout << endl << "You commited today!";
                 return 0;
             }
         }
-        
-        
-        //for (const auto& commit : repoData) {
-        //    std::cout << std::setw(4) << commit << std::endl;
     }
-    
-    //cout << commited_today << endl;
-    //cout << repo_list << endl;
+    cout << endl << "You did not commit today :(";
     return 0;
+}
+
+string getUtcToday(){
+    std::time_t now = std::time(nullptr);
+    std::tm* utcTime = std::gmtime(&now);
+    std::ostringstream oss;
+    oss << std::put_time(utcTime, "%Y-%m-%d");
+    string today = oss.str();
+    return today;
 }
 
 // Gets the proper token path based on who is using it
@@ -105,8 +100,9 @@ string getToken(){
     return token;
 }
 
-// Gets a Json
-// Code taken from the internet. (I added the parameters though)
+// Gets a Json file from a url
+// Some curl code taken from the internet. 
+// I added the parameters and modified functionality
 void getJson(string name, string url, string token, string& readBuffer){ 
     CURL* curl;
     CURLcode res;
