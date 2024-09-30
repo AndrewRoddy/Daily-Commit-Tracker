@@ -11,56 +11,66 @@
 using std::cout; using std::cin; using std::endl; using std::string;
 
 static size_t WriteCallback(void*,size_t,size_t,string*);
-void getJson(string name, string url, string token, string& readBuffer); // Gets a json file
+void getJson(string filename, string url, string token, string& readBuffer); // Gets a json file
 string getTokenPath(); // Gets the correct token path
 string getToken(); // Gets the token
-string getUtcToday();
-bool checkCommit(nlohmann::json jsonData, string today);
+string getUtcToday(); // Gets the current date in UTC
+bool checkRepoCommit(nlohmann::json jsonData, string today);
+bool checkAllCommit(string today, string token);
+std::vector<string> getRepos(string filename, string &readBuffer, string token);
 
 int main() {
-    string token = getToken();
-    string readBuffer;
-    string repositories_url = "https://api.github.com/user/repos?type=all&page=&per_page=1000";
-    string commits_url;
-    string repository;
-    string name = "repos";
-    string repo_list = "|";
-    std::vector<string> repos;
-    bool commited_today = false;
     string today = getUtcToday();
-    
-    cout << endl << "Getting repos.";
-    getJson(name, repositories_url, token, readBuffer);
-    nlohmann::json jsonData = nlohmann::json::parse(readBuffer);
-
-    bool commit = false;
-    for (const auto& event : jsonData) {
-        repository = event["name"]; // Gets repository name
-        repos.push_back(repository); // Adds repository to list
-        cout << '.';
+    string token = getToken();
+    cout << today;
+    bool commit = checkAllCommit(today, token);
+    if (commit){
+        cout << endl << "You commited today!";
+    } else {
+        cout << endl << "You did not commit today :(";
     }
+    
+}
+
+// Checks all repositories for commit
+bool checkAllCommit(string today, string token){
+    string commits_url, readBuffer;
+    std::vector<string> repos = getRepos("repos", readBuffer, token);
     for(int i = 0; i < repos.size(); i++){
         readBuffer = ""; readBuffer.clear(); // Completely clears readBuffer
         commits_url = "https://api.github.com/repos/AndrewRoddy/" + repos[i] + "/commits"; // Creates proper repo url
         getJson(repos[i], commits_url, token, readBuffer);
         nlohmann::json jsonData = nlohmann::json::parse(readBuffer);
         cout << endl << "Getting commits from " << repos[i] << '.';
-        if (checkCommit(jsonData, today)) {
-            cout << endl << "You commited today!";
-            return 0;
+        if (checkRepoCommit(jsonData, today)) {
+            return true;
         }
     }
-    cout << endl << "You did not commit today :(";
-    return 0;
+    return false;
+}
+
+// Returns string vector of all repository names
+std::vector<string> getRepos(string filename, string &readBuffer, string token){
+    getJson(filename,"https://api.github.com/user/repos?type=all&page=&per_page=1000",token,readBuffer);
+    nlohmann::json jsonData = nlohmann::json::parse(readBuffer);
+    std::vector<string> repos;
+    string repository;
+    for (const auto& event : jsonData) {
+        repository = event["name"]; // Gets repository name
+        repos.push_back(repository); // Adds repository to list
+        cout << '.';
+    }
+    return repos;
 }
 
 // Checks repository for commit
-bool checkCommit(nlohmann::json jsonData, string today){
+bool checkRepoCommit(nlohmann::json jsonData, string today){
     string long_date, date;
     for (const auto& event : jsonData) {
         try{
             long_date = (event["commit"]["committer"]["date"]);
             date = long_date.substr(0, 10);
+            cout << long_date << " | " << endl;
         } catch (...){cout << " ";}
         if (date == today){return true;}
     }
@@ -108,7 +118,7 @@ string getToken(){
 // Gets a Json file from a url
 // Some curl code taken from the internet. 
 // I added the parameters and modified functionality
-void getJson(string name, string url, string token, string& readBuffer){ 
+void getJson(string filename, string url, string token, string& readBuffer){ 
     CURL* curl;
     CURLcode res;
 
@@ -140,7 +150,7 @@ void getJson(string name, string url, string token, string& readBuffer){
             std::cerr << "curl_easy_perform() failed: " << curl_easy_strerror(res) << std::endl;
         } else {
             // Save the received JSON data to a file
-            string total_name = "json/" + name + ".json";
+            string total_name = "json/" + filename + ".json";
             std::ofstream outFile(total_name);
             if (outFile.is_open()) {
                 outFile << readBuffer;
