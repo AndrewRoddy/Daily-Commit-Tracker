@@ -14,8 +14,8 @@ static size_t WriteCallback(void*,size_t,size_t,string*);
 void getJson(string name, string url, string token, string& readBuffer); // Gets a json file
 string getTokenPath(); // Gets the correct token path
 string getToken(); // Gets the token
-
 string getUtcToday();
+bool checkCommit(nlohmann::json jsonData, string today);
 
 int main() {
     string token = getToken();
@@ -32,6 +32,8 @@ int main() {
     cout << endl << "Getting repos.";
     getJson(name, repositories_url, token, readBuffer);
     nlohmann::json jsonData = nlohmann::json::parse(readBuffer);
+
+    bool commit = false;
     for (const auto& event : jsonData) {
         repository = event["name"]; // Gets repository name
         repos.push_back(repository); // Adds repository to list
@@ -43,26 +45,29 @@ int main() {
         getJson(repos[i], commits_url, token, readBuffer);
         nlohmann::json jsonData = nlohmann::json::parse(readBuffer);
         cout << endl << "Getting commits from " << repos[i] << '.';
-        string date;
-        string long_date;
-        for (const auto& event : jsonData) {
-            cout << '.';
-            try{
-            long_date = event["commit"]["committer"]["date"];
-            date = long_date.substr(0, 10);
-            } catch (...){
-                cout << " ";
-            }
-            if (date == today){
-                cout << endl << "You commited today!";
-                return 0;
-            }
+        if (checkCommit(jsonData, today)) {
+            cout << endl << "You commited today!";
+            return 0;
         }
     }
     cout << endl << "You did not commit today :(";
     return 0;
 }
 
+// Checks repository for commit
+bool checkCommit(nlohmann::json jsonData, string today){
+    string long_date, date;
+    for (const auto& event : jsonData) {
+        try{
+            long_date = (event["commit"]["committer"]["date"]);
+            date = long_date.substr(0, 10);
+        } catch (...){cout << " ";}
+        if (date == today){return true;}
+    }
+    return false;
+}
+
+// Gets the current date in UTC time
 string getUtcToday(){
     std::time_t now = std::time(nullptr);
     std::tm* utcTime = std::gmtime(&now);
