@@ -13,6 +13,7 @@ using std::cout; using std::cin; using std::endl; using std::string;
 
 static size_t WriteCallback(void*,size_t,size_t,string*);
 
+
 // Gets a json file
 void getJson(string filename, string url, string token, string& readBuffer); 
 string getTokenPath(); // Gets the correct token path
