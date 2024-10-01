@@ -7,11 +7,14 @@
 #include <filesystem> // Just to check for TOKEN.env
 #include <ctime> // Gets today's time
 #include <sstream> // For concatenating times
+#include <chrono>
 
 using std::cout; using std::cin; using std::endl; using std::string;
 
 static size_t WriteCallback(void*,size_t,size_t,string*);
-void getJson(string filename, string url, string token, string& readBuffer); // Gets a json file
+
+// Gets a json file
+void getJson(string filename, string url, string token, string& readBuffer); 
 string getTokenPath(); // Gets the correct token path
 string getToken(); // Gets the token
 string getUtcToday(); // Gets the current date in UTC
@@ -22,6 +25,32 @@ std::vector<string> getRepos(string filename, string &readBuffer, string token);
 int main() {
     string today = getUtcToday();
     string token = getToken();
+
+    /*
+    string readBuffer;
+    string commits_url = "https://api.github.com/repos/AndrewRoddy/Daily-Commit-Tracker/commits"; // Creates proper repo url
+    getJson("Daily-Commit-Tracker", commits_url, token, readBuffer);
+    nlohmann::json jsonData = nlohmann::json::parse(readBuffer);
+    cout << endl << "Getting commits from " << "Daily-Commit-Tracker" << '.';
+    string long_date, date;
+    for (const auto& event : jsonData) {
+        //try{
+        
+        long_date = (event["commit"]["committer"]["date"]);
+        ///////
+        //const std::chrono::zoned_time cur_time{ std::chrono::current_zone(), std::chrono::system_clock::now() };
+            std::cout << cur_time << '\n';
+
+        ///////
+        cout << long_date << endl;
+            //date = long_date.substr(0, 10);
+            //cout << long_date << " | " << endl;
+        //} catch (...){cout << " ";}
+        //if (date == today){cout << "true";}
+    }
+    //cout << "false";
+    */
+    ///*
     cout << today;
     bool commit = checkAllCommit(today, token);
     if (commit){
@@ -29,6 +58,7 @@ int main() {
     } else {
         cout << endl << "You did not commit today :(";
     }
+    //*/
     
 }
 
@@ -132,7 +162,11 @@ void getJson(string filename, string url, string token, string& readBuffer){
         struct curl_slist* headers = NULL;
         headers = curl_slist_append(headers, authHeader.c_str());
 
+        // Sets the proper user agent
         headers = curl_slist_append(headers, "User-Agent: AndrewRoddy");
+
+        // Generates the times in the proper time zone
+        headers = curl_slist_append(headers, "Time-Zone: US/Michigan");
 
         curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
 

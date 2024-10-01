@@ -62,6 +62,7 @@
         "ranges": "cpp",
         "sstream": "cpp",
         "valarray": "cpp",
-        "fstream": "cpp"
+        "fstream": "cpp",
+        "chrono": "cpp"
     }
 }
