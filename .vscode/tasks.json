@@ -7,7 +7,8 @@
             "command": "C:\\msys64\\ucrt64\\bin\\g++.exe",
             "args": [
                 "-fdiagnostics-color=always",
-                "-g", "${file}",
+                "-g",
+                "${fileDirname}/**.cpp",
                 "-I${workspaceFolder}/curl-8.10.1_1-win64-mingw/include",   // Include curl headers
                 "-L${workspaceFolder}/curl-8.10.1_1-win64-mingw/lib",       // Library path for curl
                 "-lcurl", // Link with curl library
