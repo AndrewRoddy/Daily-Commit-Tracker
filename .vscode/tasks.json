@@ -13,7 +13,7 @@
                 "-L${workspaceFolder}/curl-8.10.1_1-win64-mingw/lib",       // Library path for curl
                 "-lcurl", // Link with curl library
                 "-o",
-                "${fileDirname}/${fileBasenameNoExtension}.exe"
+                "${fileDirname}/${fileBasenameNoExtension}.exe",
             ],
             "options": {
                 "cwd": "${workspaceFolder}/Tracker" // Set the current working directory

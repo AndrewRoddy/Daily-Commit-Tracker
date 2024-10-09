@@ -18,17 +18,17 @@ using std::cout; using std::cin; using std::endl; using std::string;
 
 
 int main() {
-    string today;
+    string today; bool commit;
     string token = getToken();
-
+    
     while(true){
         today = getToday();
         cout << today;
-        bool commit = checkAllCommit(today, token);
+        commit = checkAllCommit(today, token);
         if (commit){
-            cout << "Yes" << endl;
+            cout << " Yes" << endl;
         } else {
-            cout << "No" << endl;
+            cout << " No" << endl;
         }
         
         // Apparently this is less prone to errors?

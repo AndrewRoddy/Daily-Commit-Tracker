@@ -120,7 +120,7 @@ void getJson(string filename, string url, string token, string& readBuffer){
         headers = curl_slist_append(headers, "User-Agent: AndrewRoddy");
 
         // Generates the times in the proper time zone
-        headers = curl_slist_append(headers, "Time-Zone: US/Michigan");
+        //headers = curl_slist_append(headers, "Time-Zone: US/Michigan");
 
         curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
 
