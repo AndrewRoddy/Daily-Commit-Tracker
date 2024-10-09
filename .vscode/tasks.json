@@ -9,8 +9,8 @@
                 "-fdiagnostics-color=always",
                 "-g",
                 "${fileDirname}/**.cpp",
-                "-I${workspaceFolder}/curl-8.10.1_1-win64-mingw/include",   // Include curl headers
-                "-L${workspaceFolder}/curl-8.10.1_1-win64-mingw/lib",       // Library path for curl
+                "-I${workspaceFolder}/lib/curl-8.10.1_1-win64-mingw/include",   // Include curl headers
+                "-L${workspaceFolder}/lib/curl-8.10.1_1-win64-mingw/lib",       // Library path for curl
                 "-lcurl", // Link with curl library
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}.exe",

@@ -3,7 +3,7 @@
 #include <vector>
 #include <curl/curl.h> // Used for HTTP requests
 #include <fstream> // File IO
-#include "../nlohmann/json.hpp" // Read .json files
+#include "../lib/nlohmann/json.hpp" // Read .json files
 #include <filesystem> // Just to check for TOKEN.env
 #include <ctime> // Gets today's time
 #include <sstream> // For concatenating times

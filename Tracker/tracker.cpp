@@ -3,7 +3,7 @@
 #include <vector>
 #include <curl/curl.h> // Used for HTTP requests
 #include <fstream> // File IO
-#include "../nlohmann/json.hpp" // Read .json files
+#include "../lib/nlohmann/json.hpp" // Read .json files
 #include <filesystem> // Just to check for TOKEN.env
 #include <ctime> // Gets today's time
 #include <sstream> // For concatenating times
@@ -125,7 +125,7 @@ void getJson(string filename, string url, string token, string& readBuffer){
         curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
 
         // Set the CA certificates path (adjust this path as needed)
-        curl_easy_setopt(curl, CURLOPT_CAINFO, "C:\\.Coding\\Daily-Commit-Tracker\\curl-8.10.1_1-win64-mingw\\cacert.pem");
+        curl_easy_setopt(curl, CURLOPT_CAINFO, "C:\\.Coding\\Daily-Commit-Tracker\\cacert.pem");
 
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);

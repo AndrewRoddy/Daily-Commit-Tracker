@@ -1,7 +1,7 @@
 # Daily-Commit-Tracker
 
 # App Installation
-**Github Access Token**
+###### **Github Access Token**
 If you want to count commits for private repositories use this method
 1. Go to [Github Developer Settings](https://github.com/settings/tokens)
 2. Click `Generate new token (classic)`
@@ -13,8 +13,7 @@ If you want to count commits for private repositories use this method
 7. Generate Token
 8. Place your token in the "TOKEN.env" file
 
-# Binary Installation
-**libcurl**
+###### **libcurl**
 1. Download libcurl `curl-8.10.1`
  - [Site Link](https://curl.se/windows/)
  - [Download Link](https://curl.se/windows/dl-8.10.1_1/curl-8.10.1_1-win64-mingw.zip)
@@ -22,18 +21,26 @@ If you want to count commits for private repositories use this method
 3. Open the extracted folder and drag it into this folder
 4. Run `curl.exe` inside `bin\`
 5. Add the bin folder to your system environment variables under path
- - `{Whatever path you need}\Daily-Commit-Tracker\curl-8.10.1_1-win64-mingw\bin`
+ - `{Whatever path you need}\Daily-Commit-Tracker\bin\curl-8.10.1_1-win64-mingw\bin`
+6. Make a `cacert.pem` file and place it in the `Daily-Commit-Tracker` folder
 
-Note: Idk what I did different here but it worked after like the 7th tile :|
-
-
-Directory Should Look Like:
 Daily-Commit-Tracker
- | curl-8.10.1_1 (folder)
-   | bin
-     | curl.exe
- | README.md
+| lib
+| | curl-8.10.1_1 (folder)
+| | | bin
+|README.md
 
+*If you want to change directory make sure you update the environment variables and the .vscode/tasks.json*
 
- # Extra Notes
- https://api.github.com/users/AndrewRoddy/events
+# Binary Installation / Instructions
+###### **nlohmann**
+1. Download `nlohmann\json.hpp`
+ - [Site Link](https://github.com/nlohmann/json/releases)
+ - [Download Link](https://github.com/nlohmann/json/releases/download/v3.11.3/json.hpp)
+2. Place it in the nlohmann folder
+
+###### **wxWidgets**
+1. Download source code
+  - [Website](https://www.wxwidgets.org/downloads/)
+  - [Direct](https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.6/wxWidgets-3.2.6.zip)
+2. Extract .zip file

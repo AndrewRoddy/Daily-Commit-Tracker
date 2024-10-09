@@ -8,14 +8,6 @@
 
 #include <iostream>
 #include <string>
-#include <vector>
-#include <curl/curl.h> // Used for HTTP requests
-#include <fstream> // File IO
-#include "../nlohmann/json.hpp" // Read .json files
-#include <filesystem> // Just to check for TOKEN.env
-#include <ctime> // Gets today's time
-#include <sstream> // For concatenating times
-#include <unordered_map>
 
 static size_t WriteCallback(void*,size_t,size_t,std::string*);
 void getJson(std::string filename, std::string url, std::string token, std::string& readBuffer); // Gets a json file
