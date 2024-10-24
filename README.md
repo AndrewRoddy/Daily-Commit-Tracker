@@ -29,6 +29,8 @@ If you want to count commits for private repositories use this method
 7. Generate Token
 8. Place your token in the "TOKEN.env" file
 
+
+## Binary Installation / Instructions
 ###### **libcurl**
 1. Download libcurl `curl-8.10.1`
  - [Site Link](https://curl.se/windows/)
@@ -48,7 +50,6 @@ Daily-Commit-Tracker
 
 *If you want to change directory make sure you update the environment variables and the .vscode/tasks.json*
 
-## Binary Installation / Instructions
 ###### **nlohmann**
 1. Download `nlohmann\json.hpp`
  - [Site Link](https://github.com/nlohmann/json/releases)
@@ -60,3 +61,9 @@ Daily-Commit-Tracker
   - [Website](https://www.wxwidgets.org/downloads/)
   - [Direct](https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.6/wxWidgets-3.2.6.zip)
 2. Extract .zip file
+3. Move contents into `wxWidgets-3.2.6` folder
+4. Add to environment variables
+  - Create new system environment variable
+  - Name: `WXWIN`
+  - Value: (your path to) "\lib\wxWidgets-3.2.6"
+    - Mine is : `C:\.Coding\Daily-Commit-Tracker\lib\wxWidgets-3.2.6`
