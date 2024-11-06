@@ -13,6 +13,9 @@
 
 using std::cout; using std::cin; using std::endl; using std::string;
 
+// All of these functions were copied directly from the internet
+// I just found them individually and edited them for my own purposes
+
 // Gets currrent time // Copied from Internet
 std::tm getLocal(const std::string& utcTime) {
     std::tm timeStruct = {};
