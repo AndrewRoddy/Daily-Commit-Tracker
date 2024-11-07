@@ -13,6 +13,7 @@
                 "-L${workspaceFolder}/lib/curl-8.10.1_1-win64-mingw/lib",       // Library path for curl
                 "-lcurl", // Link with curl library
                 "-lshell32", // Link with Shell32.lib
+                "-mwindows", // Makes it so a console doesn't open when running program
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}.exe"
             ],

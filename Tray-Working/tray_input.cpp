@@ -9,7 +9,7 @@
 int main() {
     WNDCLASS wc = trayStart();
     HWND hwnd = createWindow();
-    HICON hIcon = createIcon("green_square.ico");
+    HICON hIcon = createIcon("..\\assets\\icons\\green_square.ico");
     NOTIFYICONDATA nid = createData(hwnd, hIcon);
 
     MSG msg; // Message Loop
