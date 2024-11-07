@@ -1,8 +1,9 @@
 # Daily-Commit-Tracker
 
 ## TODO
-1. Create anything in the taskbar tray
+1. [X] Create anything in the taskbar tray
 2. Implement taskbar changes to code
+2-1. Make file structure look like below
 3. Create method to type in or change information on first startup
 4. Create GUI element that runs on first open or when green square is pressed
 5. Add Minecraft Integration / Kahn Academy Integration / Quizlet maybe
@@ -15,6 +16,19 @@
  - 4+ Allow option to show number of days in a row you commited in the bottom right
  - Delete old .json files on checking
  - Stop checking for commits if day is the same and commited today
+
+/MyProject
+  ├── /src                # Source code (.cpp files)
+  │   ├── main.cpp        # Entry point (or main program file)
+  │   └── imagehandler.cpp # Code related to image handling
+  ├── /include            # Header files (.h or .hpp files)
+  │   ├── imagehandler.h  # Header file for image-related code
+  │   └── othermodule.h   # Other headers for modules or components
+  ├── /assets             # Contains image, texture, and other resource files
+  │   ├── /images         # Folder for image files (.png, .jpg, etc.)
+  │   └── /textures       # Optional: for other image types used as textures in your program
+  ├── /libs               # External libraries (e.g., third-party image libraries)
+  └── .gitignore          # To exclude build files and other unnecessary files from version control
 
 ## App Installation
 ###### **Github Access Token**
