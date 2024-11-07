@@ -34,13 +34,7 @@ int main() {
     }
 
     // Load an icon to display in the tray
-    //HICON hIcon = LoadIcon(NULL, IDI_APPLICATION); // Default application icon
-    //HICON hIcon = LoadIcon(NULL, IDI_APPLICATION); // Default application icon
-
-    // The L beforehand means it is a wide character literal
-    // Stored as a wchar_t instead of char
-    HICON hIcon = (HICON)LoadImage(NULL, "green_square.ico", IMAGE_ICON, 0, 0, LR_LOADFROMFILE);
-
+    HICON hIcon = LoadIcon(NULL, IDI_APPLICATION); // Default application icon
 
     // Set up the NOTIFYICONDATA structure
     NOTIFYICONDATA nid = {};

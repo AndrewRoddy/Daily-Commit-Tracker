@@ -56,6 +56,11 @@ Daily-Commit-Tracker
  - [Download Link](https://github.com/nlohmann/json/releases/download/v3.11.3/json.hpp)
 2. Place it in the nlohmann folder
 
+
+###### **shell32.lib**
+1. Add `"-lshell32",` to tasks.json
+
+/*
 ###### **wxWidgets**
 1. Download source code
   - [Website](https://www.wxwidgets.org/downloads/)
@@ -67,3 +72,4 @@ Daily-Commit-Tracker
   - Name: `WXWIN`
   - Value: (your path to) "\lib\wxWidgets-3.2.6"
     - Mine is : `C:\.Coding\Daily-Commit-Tracker\lib\wxWidgets-3.2.6`
+*/
