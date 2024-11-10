@@ -18,7 +18,7 @@
                 "${fileDirname}\\${fileBasenameNoExtension}.exe"
             ],
             "options": {
-                "cwd": "${workspaceFolder}\\Tracker" // Set the current working directory
+                "cwd": "${workspaceFolder}\\src" // Set the current working directory
             },
             "problemMatcher": [
                 "$gcc"
