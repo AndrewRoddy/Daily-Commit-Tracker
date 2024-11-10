@@ -55,6 +55,8 @@ If you want to count commits for private repositories use this method
 5. Add the bin folder to your system environment variables under path
  - `{Whatever path you need}\Daily-Commit-Tracker\bin\curl-8.10.1_1-win64-mingw\bin`
 6. Make a `cacert.pem` file and place it in the `Daily-Commit-Tracker` folder
+ - [Site Link](https://curl.se/docs/caextract.html)
+ - [Download Link](https://curl.se/ca/cacert.pem)
 
 Daily-Commit-Tracker
 | lib

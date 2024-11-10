@@ -125,7 +125,9 @@ void getJson(string filename, string url, string token, string& readBuffer){
         curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
 
         // Set the CA certificates path (adjust this path as needed)
-        curl_easy_setopt(curl, CURLOPT_CAINFO, "C:\\.Coding\\Daily-Commit-Tracker\\cacert.pem");
+
+        // I edited this line without testing it
+        curl_easy_setopt(curl, CURLOPT_CAINFO, "..\\cacert.pem");
 
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
