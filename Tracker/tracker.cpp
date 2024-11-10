@@ -45,6 +45,7 @@ std::vector<string> getRepos(string filename, string &readBuffer, string token){
     return repos;
 }
 
+
 // Checks repository for commit
 bool checkRepoCommit(nlohmann::json jsonData, string today){
     string long_date, convert_date, date;
@@ -127,7 +128,7 @@ void getJson(string filename, string url, string token, string& readBuffer){
         // Set the CA certificates path (adjust this path as needed)
 
         // I edited this line without testing it
-        curl_easy_setopt(curl, CURLOPT_CAINFO, "..\\cacert.pem");
+        curl_easy_setopt(curl, CURLOPT_CAINFO, "C:\\.Coding\\Daily-Commit-Tracker\\cacert.pem");
 
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
