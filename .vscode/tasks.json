@@ -3,22 +3,22 @@
     "tasks": [
         {
             "type": "cppbuild",
-            "label": "C/C++: g++.exe build active file",
+            "label": "C\\C++: g++.exe build active file",
             "command": "C:\\msys64\\ucrt64\\bin\\g++.exe",
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
-                "${fileDirname}/**.cpp",
-                "-I${workspaceFolder}/lib/curl-8.10.1_1-win64-mingw/include",   // Include curl headers
-                "-L${workspaceFolder}/lib/curl-8.10.1_1-win64-mingw/lib",       // Library path for curl
+                "${fileDirname}\\**.cpp",
+                "-I${workspaceFolder}\\lib\\curl-8.10.1_1-win64-mingw\\include",   // Include curl headers
+                "-L${workspaceFolder}\\lib\\curl-8.10.1_1-win64-mingw\\lib",       // Library path for curl
                 "-lcurl", // Link with curl library
                 "-lshell32", // Link with Shell32.lib
-                "-mwindows", // Makes it so a console doesn't open when running program
+                //"-mwindows", // Makes it so a console doesn't open when running program
                 "-o",
-                "${fileDirname}/${fileBasenameNoExtension}.exe"
+                "${fileDirname}\\${fileBasenameNoExtension}.exe"
             ],
             "options": {
-                "cwd": "${workspaceFolder}/Tracker" // Set the current working directory
+                "cwd": "${workspaceFolder}\\Tracker" // Set the current working directory
             },
             "problemMatcher": [
                 "$gcc"
