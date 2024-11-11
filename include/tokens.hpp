@@ -10,5 +10,7 @@
 #include <string>
 
 void token_check();
+std::string getTokenPath(); // Gets the correct token path
+std::string getToken(); // Gets the token
 
 #endif

@@ -9,8 +9,8 @@ using std::cin; using std::cout; using std::endl;
 
 void token_check() {
 
-    // Construct the command to download the file using wget
     if (std::filesystem::exists("..\\cacert.pem") == false){
+        // Construct the command to download the file using curl
         system("curl -s -o ..\\cacert.pem https://curl.se/ca/cacert.pem");
     }
     
@@ -26,4 +26,23 @@ void token_check() {
 
         file.close();
     }
+}
+
+// Gets the token
+std::string getToken(){
+    std::ifstream file("..\\TOKENS.env");
+    std::string token;
+    if (file.is_open()) {
+        std::string line;
+        while (getline(file, line)) {
+            if (line.find("GITHUB_TOKEN=") != std::string::npos) {
+                token = line.substr(line.find('=') + 1);
+                break;
+            }
+        }
+        file.close();
+    } else {
+        std::cerr << "Unable to open token file." << std::endl;
+    }
+    return token;
 }

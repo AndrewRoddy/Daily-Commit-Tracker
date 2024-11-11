@@ -11,8 +11,6 @@
 
 static size_t WriteCallback(void*,size_t,size_t,std::string*);
 void getJson(std::string filename, std::string url, std::string token, std::string& readBuffer); // Gets a json file
-std::string getTokenPath(); // Gets the correct token path
-std::string getToken(); // Gets the token
 std::string getToday(); // Gets the current date in UTC
 bool checkRepoCommit(nlohmann::json jsonData, std::string today);
 bool checkAllCommit(std::string today, std::string token);

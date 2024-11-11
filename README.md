@@ -4,7 +4,7 @@
 1. [X] Create anything in the taskbar tray
 2. [X] Implement taskbar changes to code
 3. [X] Fixes file structure
-4. Create method to type in or change information on first startup
+4. [X] Create method to type in or change information on first startup
 5. Create GUI element that runs on first open or when green square is pressed
 6. Add Minecraft Integration / Kahn Academy Integration / Quizlet maybe
 7. Link Patreon subscription status to product

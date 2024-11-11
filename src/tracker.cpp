@@ -11,6 +11,7 @@
 
 #include "..\\include\\tzone.hpp"
 #include "..\\include\\tracker.hpp"
+#include "..\\include\\tokens.hpp"
 
 using std::cout; using std::cin; using std::endl; using std::string;
 
@@ -70,34 +71,6 @@ string getToday(){
     std::ostringstream oss;
     oss << std::put_time(localTime, "%Y-%m-%d"); // Formatting
     return oss.str();
-}
-
-// Gets the proper token path based on who is using it
-string getTokenPath(){
-    if (std::filesystem::exists("..\\TOKENS.env")) { // Where my tokens / developer tokens are stored
-        return "..\\TOKENS.env";
-    } else {
-        return "..\\TOKEN.env";
-    }
-}
-
-// Gets the token
-string getToken(){
-    std::ifstream file(getTokenPath());
-    std::string token;
-    if (file.is_open()) {
-        std::string line;
-        while (getline(file, line)) {
-            if (line.find("GITHUB_TOKEN=") != std::string::npos) {
-                token = line.substr(line.find('=') + 1);
-                break;
-            }
-        }
-        file.close();
-    } else {
-        std::cerr << "Unable to open token file." << std::endl;
-    }
-    return token;
 }
 
 // Gets a Json file from a url
