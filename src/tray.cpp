@@ -6,14 +6,14 @@
 
 #include "..\\include\\tray.hpp"
 
-// This one is taken from the internet
-// Window procedure to handle messages for the tray icon
+// Handles when tray icon is clicked/interacted with
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
-    if (uMsg == WM_TRAY_ICON_MESSAGE) {
-        // Check for mouse events on the tray icon
-        if (lParam == WM_RBUTTONDOWN) {
-            // Display a message box on right-click
-            MessageBox(NULL, _T("Tray Icon Right-Clicked!"), _T("Tray Icon"), MB_OK);
+    if (uMsg == WM_TRAY_ICON_MESSAGE) { // Checks for mouse stuff
+        if (lParam == WM_RBUTTONDOWN) { // Close program if right clicked
+            exit(0);
+        }
+        if (lParam == WM_LBUTTONDOWN) {
+            MessageBox(NULL, _T("Tray Icon Left-Clicked!"), _T("Tray Icon"), MB_OK);
         }
     } else if (uMsg == WM_DESTROY) {
         PostQuitMessage(0);

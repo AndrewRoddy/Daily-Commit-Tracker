@@ -1,6 +1,7 @@
-// Lucky Five library header
+// Time Zone Functions
 // Andrew Roddy
 // 9/26/24
+
 #pragma once
 #ifndef tzone
 #define tzone

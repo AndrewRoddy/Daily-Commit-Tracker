@@ -84,19 +84,19 @@ string getTokenPath(){
 // Gets the token
 string getToken(){
     std::ifstream file(getTokenPath());
-        std::string token;
-        if (file.is_open()) {
-            std::string line;
-            while (getline(file, line)) {
-                if (line.find("GITHUB_TOKEN=") != std::string::npos) {
-                    token = line.substr(line.find('=') + 1);
-                    break;
-                }
+    std::string token;
+    if (file.is_open()) {
+        std::string line;
+        while (getline(file, line)) {
+            if (line.find("GITHUB_TOKEN=") != std::string::npos) {
+                token = line.substr(line.find('=') + 1);
+                break;
             }
-            file.close();
-        } else {
-            std::cerr << "Unable to open token file." << std::endl;
         }
+        file.close();
+    } else {
+        std::cerr << "Unable to open token file." << std::endl;
+    }
     return token;
 }
 

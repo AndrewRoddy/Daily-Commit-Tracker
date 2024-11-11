@@ -3,14 +3,10 @@ curl-8.10.1_1-win64-mingw.zip
 curl
 
 curl-ca-bundle.crt
-cacert.pem
 
 TOKENS.env
+MYTOKENSTOSAVE.env
 
 json
-
-Tracker 10.8.24 Backup
-
-wxWidgets-3.2.6
 
 cacert.pem
