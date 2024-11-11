@@ -13,7 +13,7 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) 
             exit(0);
         }
         if (lParam == WM_LBUTTONDOWN) {
-            MessageBox(NULL, _T("Tray Icon Left-Clicked!"), _T("Tray Icon"), MB_OK);
+            MessageBox(NULL, _T("Tray Icon Left-Clicked!"), _T("Daily Commit Tracker"), MB_OK);
         }
     } else if (uMsg == WM_DESTROY) {
         PostQuitMessage(0);
@@ -36,7 +36,7 @@ WNDCLASS trayStart(){
 HWND createWindow(){
     // Create a window to handle tray icon messages
     HWND hwnd_ = CreateWindowEx(
-        0, _T("TrayIconClass"), _T("Tray Icon Window"),
+        0, _T("TrayIconClass"), _T("Commit Tracker Window"),
         0, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT,
         NULL, NULL, GetModuleHandle(NULL), NULL
     );
@@ -70,7 +70,7 @@ NOTIFYICONDATA createData(HWND hwnd, HICON hIcon){
     nid.uFlags = NIF_ICON | NIF_MESSAGE | NIF_TIP;
     nid.hIcon = hIcon;
     nid.uCallbackMessage = WM_TRAY_ICON_MESSAGE; // Custom message for tray icon events
-    _tcscpy_s(nid.szTip, _T("My Tray Icon"));
+    _tcscpy_s(nid.szTip, _T("Daily Commit Tracker"));
     Shell_NotifyIcon(NIM_ADD, &nid); // Add the icon to the system tray
     return nid;
 }

@@ -42,9 +42,9 @@ int main() {
             exit(0);
         }
 
-        // Checks for new commits every 60 seconds.
+        // Checks for new commits every 30 seconds.
         second_loop += 1;
-        if (second_loop >= 60){
+        if (second_loop >= 30){
             today = getToday(); cout << today;
             commit = checkAllCommit(today, token);
             removeIcon(nid, hIcon);

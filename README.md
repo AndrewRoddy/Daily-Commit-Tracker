@@ -16,6 +16,8 @@
  - 4+ Allow option to show number of days in a row you commited in the bottom right
  - Delete old .json files on checking
  - Stop checking for commits if day is the same and commited today
+ - Open on startup
+   - `C:\Users\Andre\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup`
 
 
 ## App Installation
