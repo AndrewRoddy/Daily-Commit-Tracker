@@ -13,7 +13,11 @@
                 "-L${workspaceFolder}\\lib\\curl-8.10.1_1-win64-mingw\\lib",       // Library path for curl
                 "-lcurl", // Link with curl library
                 "-lshell32", // Link with Shell32.lib
-                "-mwindows", // Makes it so a console doesn't open when running program
+
+                // Makes it so a console doesn't open when running program
+                // Also makes it to VsCode console doesn't print anything
+                "-mwindows", 
+                
                 "-o",
                 "${fileDirname}\\${fileBasenameNoExtension}.exe"
             ],
