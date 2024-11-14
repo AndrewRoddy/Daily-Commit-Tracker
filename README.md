@@ -5,10 +5,11 @@
 2. [X] Implement taskbar changes to code
 3. [X] Fixes file structure
 4. [X] Create method to type in or change information on first startup
-5. Create GUI element that runs on first open or when green square is pressed
-6. Add Minecraft Integration / Kahn Academy Integration / Quizlet maybe
-7. Link Patreon subscription status to product
-8. Add texture changes available for subscribers (icon color / style)
+5. [X] Add an icon for when no connection
+6. Create GUI element that runs on first open or when green square is pressed
+7. Add Minecraft Integration / Kahn Academy Integration / Quizlet maybe
+8. Link Patreon subscription status to product
+9. Add texture changes available for subscribers (icon color / style)
 
 *Anytime*
  - Optimize Json getting order (make recent commits more favorable)
@@ -79,3 +80,12 @@ Daily-Commit-Tracker
   - Value: (your path to) "\lib\wxWidgets-3.2.6"
     - Mine is : `C:\.Coding\Daily-Commit-Tracker\lib\wxWidgets-3.2.6`
 */
+
+## Other
+**Adding the application to startup**
+1. `Win+R` Windows Key + R
+2. input: `shell:startup`
+3. Place a **LINK**/shortcut to the `main.exe` file in this folder
+   - if it isn't a link/shortcut this will not work 
+ - After this it *should* open on startup although I am not certain lol 
+ - (I will try and make a way for the user to press a button and do this)

@@ -51,7 +51,12 @@ int main() {
         if (second_loop >= 30){ // Checks
             today = getToday(); // Gets current day
             cout << today; // Prints current date to console
-            commit = checkAllCommit(today, token); // True if commit today
+            try{
+                commit = checkAllCommit(today, token); // True if commit today
+            } catch(...) { // I know this is bad but I need to use it
+                std::this_thread::sleep_for(std::chrono::seconds(5)); // Wait 5 seconds before trying again
+                continue;
+            }
             removeIcon(nid, hIcon); // Clears old icon to show new
             if (commit){ cout << " Yes" << endl; // Yes Commit -> Green Box
                 hIcon = createIcon("..\\assets\\icons\\32x\\Green.ico");
