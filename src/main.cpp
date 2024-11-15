@@ -19,7 +19,7 @@
 using std::cout; using std::cin; using std::endl; using std::string;
 
 int main() {
-
+    /*
     token_check(); // Checks and creates tokens
     string token = getToken(); // Gets the current token
 
@@ -37,10 +37,10 @@ int main() {
     while (true){
         // Checks for if the user presses the icon.
 
-        /* 
-        GetMessage() pauses the program if queue is empty
-        PeekMessage() gets and handles user input
-        PM_REMOVE removes the message from queue after peeking */
+         
+        //GetMessage() pauses the program if queue is empty
+        //PeekMessage() gets and handles user input
+        //PM_REMOVE removes the message from queue after peeking
         if(PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)){ 
             TranslateMessage(&msg);
             DispatchMessage(&msg);
@@ -74,5 +74,6 @@ int main() {
     }
     
     return 0;
+    */
 }
 
