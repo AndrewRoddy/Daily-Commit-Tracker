@@ -36,7 +36,6 @@ int main() {
 
     while (true){
         // Checks for if the user presses the icon.
-
          
         //GetMessage() pauses the program if queue is empty
         //PeekMessage() gets and handles user input
