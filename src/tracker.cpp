@@ -80,6 +80,8 @@ void getJson(string filename, string url, string token, string& readBuffer){
     CURL* curl;
     CURLcode res;
 
+
+
     curl = curl_easy_init();
     if (curl) { // Initialize CURL
         // Set the URL
@@ -121,7 +123,7 @@ void getJson(string filename, string url, string token, string& readBuffer){
                 outFile.close();
                 //std::cout << "JSON data saved to json/" << name << ".json" << std::endl;
             } else {
-                std::cerr << "Failed to open events.json for writing" << std::endl;
+                std::cerr << "Failed to open " << filename << ".json for writing" << std::endl;
             }
         }
 

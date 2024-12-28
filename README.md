@@ -42,10 +42,12 @@ If you want to count commits for private repositories use this method
  - [Download Link](https://curl.se/windows/dl-8.10.1_1/curl-8.10.1_1-win64-mingw.zip)
 2. Extract zip file
 3. Open the extracted folder and drag it into this folder
+  - Note: It's inside the unzipped folder with the same name
 4. Run `curl.exe` inside `bin\`
 5. Add the bin folder to your system environment variables under path
  - `{Whatever path you need}\Daily-Commit-Tracker\bin\curl-8.10.1_1-win64-mingw\bin`
-6. Make a `cacert.pem` file and place it in the `Daily-Commit-Tracker` folder
+
+6. You don't need to do this anymore unless it bugs... Make a `cacert.pem` file and place it in the `Daily-Commit-Tracker` folder
  - [Site Link](https://curl.se/docs/caextract.html)
  - [Download Link](https://curl.se/ca/cacert.pem)
 
@@ -66,20 +68,6 @@ Daily-Commit-Tracker
 
 ###### **shell32.lib**
 1. Add `"-lshell32",` to tasks.json
-
-/*
-###### **wxWidgets**
-1. Download source code
-  - [Website](https://www.wxwidgets.org/downloads/)
-  - [Direct](https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.6/wxWidgets-3.2.6.zip)
-2. Extract .zip file
-3. Move contents into `wxWidgets-3.2.6` folder
-4. Add to environment variables
-  - Create new system environment variable
-  - Name: `WXWIN`
-  - Value: (your path to) "\lib\wxWidgets-3.2.6"
-    - Mine is : `C:\.Coding\Daily-Commit-Tracker\lib\wxWidgets-3.2.6`
-*/
 
 ## Other
 **Adding the application to startup**

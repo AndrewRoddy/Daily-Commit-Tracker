@@ -16,7 +16,7 @@
 
                 // Makes it so a console doesn't open when running program
                 // Also makes it to VsCode console doesn't print anything
-                "-mwindows", 
+                //"-mwindows", 
                 
                 "-o",
                 //"${fileDirname}\\${fileBasenameNoExtension}.exe"

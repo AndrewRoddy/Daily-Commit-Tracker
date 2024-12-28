@@ -7,6 +7,4 @@ curl-ca-bundle.crt
 TOKENS.env
 MYTOKENSTOSAVE.env
 
-json
-
 cacert.pem
