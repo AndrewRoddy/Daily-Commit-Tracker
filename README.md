@@ -69,6 +69,9 @@ Daily-Commit-Tracker
 ###### **shell32.lib**
 1. Add `"-lshell32",` to tasks.json
 
+## Release Creation
+I downloaded Inno from here [Site Link](https://jrsoftware.org/isdl.php)
+
 ## Other
 **Adding the application to startup**
 1. `Win+R` Windows Key + R

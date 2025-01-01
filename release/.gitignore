@@ -1,0 +1,10 @@
+curl-8.10.1_1-win64-mingw
+curl-8.10.1_1-win64-mingw.zip
+curl
+
+curl-ca-bundle.crt
+
+TOKENS.env
+MYTOKENSTOSAVE.env
+
+cacert.pem
