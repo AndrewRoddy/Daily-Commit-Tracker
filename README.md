@@ -1,7 +1,6 @@
 # Daily-Commit-Tracker
 
-## Liscense All Rights Reserved
-
+#### Liscense: All Rights Reserved
 
 ## App Installation
 ###### **Github Access Token**
