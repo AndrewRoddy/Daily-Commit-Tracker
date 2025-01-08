@@ -1,24 +1,6 @@
 # Daily-Commit-Tracker
 
-## TODO
-1. [X] Create anything in the taskbar tray
-2. [X] Implement taskbar changes to code
-3. [X] Fixes file structure
-4. [X] Create method to type in or change information on first startup
-5. [X] Add an icon for when no connection
-6. Create GUI element that runs on first open or when green square is pressed
-7. Add Minecraft Integration / Kahn Academy Integration / Quizlet maybe
-8. Link Patreon subscription status to product
-9. Add texture changes available for subscribers (icon color / style)
-
-*Anytime*
- - Optimize Json getting order (make recent commits more favorable)
- - Add a commit "streak" feature
- - 4+ Allow option to show number of days in a row you commited in the bottom right
- - Delete old .json files on checking
- - Stop checking for commits if day is the same and commited today
- - Open on startup
-   - `C:\Users\Andre\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup`
+## Liscense All Rights Reserved
 
 
 ## App Installation
@@ -80,3 +62,23 @@ I downloaded Inno from here [Site Link](https://jrsoftware.org/isdl.php)
    - if it isn't a link/shortcut this will not work 
  - After this it *should* open on startup although I am not certain lol 
  - (I will try and make a way for the user to press a button and do this)
+
+## TODO
+1. [X] Create anything in the taskbar tray
+2. [X] Implement taskbar changes to code
+3. [X] Fixes file structure
+4. [X] Create method to type in or change information on first startup
+5. [X] Add an icon for when no connection
+6. Create GUI element that runs on first open or when green square is pressed
+7. Add Minecraft Integration / Kahn Academy Integration / Quizlet maybe
+8. Link Patreon subscription status to product
+9. Add texture changes available for subscribers (icon color / style)
+
+*Anytime*
+ - Optimize Json getting order (make recent commits more favorable)
+ - Add a commit "streak" feature
+ - 4+ Allow option to show number of days in a row you commited in the bottom right
+ - Delete old .json files on checking
+ - Stop checking for commits if day is the same and commited today
+ - Open on startup
+   - `C:\Users\Andre\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup`
