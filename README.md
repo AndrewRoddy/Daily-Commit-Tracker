@@ -68,6 +68,7 @@ I downloaded Inno from here [Site Link](https://jrsoftware.org/isdl.php)
 3. [X] Fixes file structure
 4. [X] Create method to type in or change information on first startup
 5. [X] Add an icon for when no connection
+5.1. Change file paths to be based on the Daily-Commit-Tracker folder itself to allow running the .exe to be consistent
 6. Create GUI element that runs on first open or when green square is pressed
 7. Add Minecraft Integration / Kahn Academy Integration / Quizlet maybe
 8. Link Patreon subscription status to product

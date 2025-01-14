@@ -8,8 +8,7 @@
             "args": [
                 "-fdiagnostics-color=always",
                 "-O2", // Enable optimizations for Release mode
-                "${fileDirname}\\main.cpp",
-                "${fileDirname}\\src\\**.cpp",
+                "${workspaceFolder}\\src\\*.cpp",
                 "-I${workspaceFolder}\\lib\\curl-8.10.1_1-win64-mingw\\include",   // Include curl headers
                 "-L${workspaceFolder}\\lib\\curl-8.10.1_1-win64-mingw\\lib",       // Library path for curl
                 "-lcurl", // Link with curl library
@@ -21,7 +20,8 @@
                 
                 "-o",
                 //"${fileDirname}\\${fileBasenameNoExtension}.exe"
-                "${fileDirname}\\Daily-Commit-Tracker.exe"
+                //{workspaceFolder} is Daily-Commit-Tracker
+                "${workspaceFolder}\\bin\\Daily-Commit-Tracker.exe"
             ],
             "options": {
                 "cwd": "${workspaceFolder}\\src" // Set the current working directory

@@ -9,6 +9,7 @@ using std::cin; using std::cout; using std::endl;
 
 void token_check() {
 
+    cout << "TOKEN_CHECK";
     if (std::filesystem::exists("..\\cacert.pem") == false){
         // Construct the command to download the file using curl
         system("curl -s -o ..\\cacert.pem https://curl.se/ca/cacert.pem");
