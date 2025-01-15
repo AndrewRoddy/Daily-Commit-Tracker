@@ -4,12 +4,13 @@
 #include <curl/curl.h> // Used for HTTP requests
 #include <fstream> // File IO
 #include "..\\lib\\nlohmann\\json.hpp" // Read .json files
-#include <filesystem> // Just to check for TOKEN.env
+#include <filesystem> // Checks for where code is being run // Just to check for TOKEN.env
 #include <ctime> // Gets today's time
 #include <sstream> // For concatenating times
 #include <unordered_map>
 #include <chrono>
 #include <thread>
+
 
 #include "..\\include\\tzone.hpp"
 #include "..\\include\\tracker.hpp"
@@ -19,7 +20,9 @@
 using std::cout; using std::cin; using std::endl; using std::string;
 
 int main() {
-    
+    std::filesystem::path current_path = std::filesystem::current_path();
+    cout << current_path << endl;
+    /*
     token_check(); // Checks and creates tokens
     string token = getToken(); // Gets the current token
 
@@ -73,6 +76,6 @@ int main() {
     }
     
     return 0;
-    
+    */
 }
 
