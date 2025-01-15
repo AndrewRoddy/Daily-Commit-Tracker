@@ -8,7 +8,8 @@
             "args": [
                 "-fdiagnostics-color=always",
                 "-O2", // Enable optimizations for Release mode
-                "${workspaceFolder}\\src\\*.cpp",
+                //"${workspaceFolder}\\src\\*.cpp",
+                "${workspaceFolder}\\src\\main.cpp",
                 "-I${workspaceFolder}\\lib\\curl-8.10.1_1-win64-mingw\\include",   // Include curl headers
                 "-L${workspaceFolder}\\lib\\curl-8.10.1_1-win64-mingw\\lib",       // Library path for curl
                 "-lcurl", // Link with curl library
