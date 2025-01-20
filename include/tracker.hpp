@@ -1,7 +1,7 @@
 // Tracker Functions
 // Andrew Roddy
 // 9/26/24
-
+/*
 #pragma once
 #ifndef tracker
 #define tracker
@@ -16,4 +16,4 @@ bool checkRepoCommit(nlohmann::json jsonData, std::string today);
 bool checkAllCommit(std::string today, std::string token);
 std::vector<std::string> getRepos(std::string filename, std::string &readBuffer, std::string token);
 
-#endif
+#endif*/

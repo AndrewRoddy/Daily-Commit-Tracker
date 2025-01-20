@@ -1,40 +1,36 @@
 #include <iostream>
-/*
-#include <string>
 #include <vector>
-#include <curl/curl.h> // Used for HTTP requests
-#include <fstream> // File IO
-#include "..\\lib\\nlohmann\\json.hpp" // Read .json files
-#include <filesystem> // Checks for where code is being run // Just to check for TOKEN.env
-#include <ctime> // Gets today's time
-#include <sstream> // For concatenating times
-#include <unordered_map>
-#include <chrono>
-#include <thread>
 
+//#include <string>
+//#include <vector>
+//#include <curl/curl.h> // Used for HTTP requests
+//#include <fstream> // File IO
+//#include "..\\lib\\nlohmann\\json.hpp" // Read .json files
+//#include <filesystem> // Checks for where code is being run // Just to check for TOKEN.env
+//#include <ctime> // Gets today's time
+//#include <sstream> // For concatenating times
+//#include <unordered_map>
+//#include <chrono>
+//#include <thread>
 
-#include "..\\include\\tzone.hpp"
-#include "..\\include\\tracker.hpp"
-#include "..\\include\\tray.hpp"
-#include "..\\include\\tokens.hpp"
+/*
+//#include "..\\include\\tzone.hpp"
+///#include "..\\include\\tracker.hpp"
+//#include "..\\include\\tray.hpp"
+//#include "..\\include\\tokens.hpp"
 */
-using std::cout; using std::cin; using std::endl; //using std::string;
 
-//std::string adjust_path(const std::string& relative_path); // Needs to be here because needs to help link other files
+#include "..\\include\\pather.hpp"
 
 int main() {
     std::cout << "HI" << std::endl;
-    /*
-    // Example usage
-    std::string relative_file = "assets\\data.txt";
-    std::string full_path = adjust_path(relative_file);
 
-    std::cout << "Adjusted Path: " << full_path << std::endl;
-
-    // You can now use `full_path` to open files, etc.
-    std::filesystem::path current_path = std::filesystem::current_path();
-    cout << current_path << endl;
-    */
+    
+    std::cout << fix_path("E:\\.MyFiles\\.Coding\\Daily-Commit-Tracker\\cacert.pem");
+    int a; std::cin >> a;
+    return 0;
+    
+    
     /*
     token_check(); // Checks and creates tokens
     string token = getToken(); // Gets the current token
@@ -91,23 +87,4 @@ int main() {
     return 0;
     */
 }
-/*
-std::string adjust_path(const std::string& relative_path) {
-    std::filesystem::path current_path = std::filesystem::current_path(); // The current path of where it's being run
-    std::string current_path_str = current_path.string(); // convert the current path to a string
 
-    // src time
-    size_t src_pos = current_path_str.find("src"); // Checks for src
-    if (src_pos != std::string::npos) { // If it is in src folder
-        current_path_str = current_path_str.substr(0, src_pos); // Remove the src part from the path
-    }
-
-    // Bin time
-    size_t bin_pos = current_path_str.find("bin"); // Checks for bin
-    if (bin_pos != std::string::npos) { // If it is in bin folder
-        current_path_str = current_path_str.substr(0, bin_pos); // Remove the bin part from the path
-    }
-    return (std::filesystem::path(current_path_str) / relative_path).string(); // Return in the fixed path
-}
-
-*/
