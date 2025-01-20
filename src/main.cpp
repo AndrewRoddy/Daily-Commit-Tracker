@@ -26,9 +26,8 @@ int main() {
     std::cout << "HI" << std::endl;
 
     
-    std::cout << fix_path("E:\\.MyFiles\\.Coding\\Daily-Commit-Tracker\\cacert.pem");
-    int a; std::cin >> a;
-    return 0;
+    std::cout << fix_path("cacert.pem");
+    
     
     
     /*
@@ -86,5 +85,7 @@ int main() {
     
     return 0;
     */
+    int a; std::cin >> a;
+    return 0;
 }
 

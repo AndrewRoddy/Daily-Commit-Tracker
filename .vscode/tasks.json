@@ -9,6 +9,7 @@
                 "-g",
                 "${workspaceFolder}\\src\\main.cpp",
                 "${workspaceFolder}\\src\\pather.cpp",
+                "${workspaceFolder}\\src\\tokens.cpp",
                 "-o",
                 "${workspaceFolder}\\bin\\Daily-Commit-Tracker.exe"
             ],
