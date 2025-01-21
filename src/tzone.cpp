@@ -1,17 +1,5 @@
-#include <iostream>
-#include <string>
-#include <vector>
-#include <curl/curl.h> // Used for HTTP requests
-#include <fstream> // File IO
-#include "../lib/nlohmann/json.hpp" // Read .json files
-#include <filesystem> // Just to check for TOKEN.env
-#include <ctime> // Gets today's time
-#include <sstream> // For concatenating times
-#include <unordered_map>
 
 #include "..\\include\\tzone.hpp"
-
-using std::cout; using std::cin; using std::endl; using std::string;
 
 // All of these functions were copied directly from the internet
 // I just found them individually and edited them for my own purposes
@@ -31,6 +19,15 @@ std::tm getLocal(const std::string& utcTime) {
 std::time_t setUTC(struct std::tm *tm) {
     std::time_t ret = std::mktime(tm);
     return ret - _timezone; // Adjust for the local time zone difference
+}
+
+// Gets the current date in UTC time
+std::string getToday(){
+    std::time_t now = std::time(nullptr); // Get current time
+    std::tm* localTime = std::localtime(&now); // Convert to local
+    std::ostringstream oss;
+    oss << std::put_time(localTime, "%Y-%m-%d"); // Formatting
+    return oss.str();
 }
 
 // Converts UTC times to selected time zone // Copied from the Internet

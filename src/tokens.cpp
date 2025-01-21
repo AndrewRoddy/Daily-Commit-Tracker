@@ -1,15 +1,11 @@
-#include <iostream>
-#include <string>
-#include <fstream>
-#include <filesystem> // Just to check for TOKENS.env
-#include <cstdlib>
+
 #include "..\\include\\tokens.hpp"
 
 using std::cin; using std::cout; using std::endl;
 
 void token_check() {
 
-    cout << "TOKEN_CHECK";
+    cout << "Checking for token." << endl;
     if (std::filesystem::exists("..\\cacert.pem") == false){
         // Construct the command to download the file using curl
         system("curl -s -o ..\\cacert.pem https://curl.se/ca/cacert.pem");

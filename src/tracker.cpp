@@ -1,24 +1,13 @@
-#include <iostream>
-#include <string>
-#include <vector>
-#include <curl/curl.h> // Used for HTTP requests
-#include <fstream> // File IO
-#include "../lib/nlohmann/json.hpp" // Read .json files
-#include <filesystem> // Just to check for TOKEN.env
-#include <ctime> // Gets today's time
-#include <sstream> // For concatenating times
-#include <unordered_map>
 
 #include "..\\include\\tzone.hpp"
 #include "..\\include\\tracker.hpp"
 #include "..\\include\\tokens.hpp"
 
-using std::cout; using std::cin; using std::endl; using std::string;
-
 // Checks all repositories for commit
-bool checkAllCommit(string today, string token){
-    string commits_url, readBuffer;
-    std::vector<string> repos = getRepos("repos", readBuffer, token);
+bool checkAllCommit(std::string today, std::string token){
+    std::string commits_url, readBuffer;
+    std::vector<std::string> repos = getRepos("repos", readBuffer, token);
+    
     for(int i = 0; i < repos.size(); i++){
         readBuffer = ""; readBuffer.clear(); // Completely clears readBuffer
         commits_url = "https://api.github.com/repos/AndrewRoddy/" + repos[i] + "/commits"; // Creates proper repo url
@@ -29,27 +18,27 @@ bool checkAllCommit(string today, string token){
             return true;
         }
     }
+    
     return false;
 }
 
-// Returns string vector of all repository names
-std::vector<string> getRepos(string filename, string &readBuffer, string token){
+// Returns std::string vector of all repository names
+std::vector<std::string> getRepos(std::string filename, std::string &readBuffer, std::string token){
     getJson(filename,"https://api.github.com/user/repos?type=all&page=&per_page=1000",token,readBuffer);
     nlohmann::json jsonData = nlohmann::json::parse(readBuffer);
-    std::vector<string> repos;
-    string repository;
+    std::vector<std::string> repos;
+    std::string repository;
     for (const auto& event : jsonData) {
         repository = event["name"]; // Gets repository name
         repos.push_back(repository); // Adds repository to list
-        //cout << '.';
     }
     return repos;
 }
 
 
 // Checks repository for commit
-bool checkRepoCommit(nlohmann::json jsonData, string today){
-    string long_date, convert_date, date;
+bool checkRepoCommit(nlohmann::json jsonData, std::string today){
+    std::string long_date, convert_date, date;
     for (const auto& event : jsonData) {
         try{
             long_date = (event["commit"]["committer"]["date"]);
@@ -64,19 +53,12 @@ bool checkRepoCommit(nlohmann::json jsonData, string today){
     return false;
 }
 
-// Gets the current date in UTC time
-string getToday(){
-    std::time_t now = std::time(nullptr); // Get current time
-    std::tm* localTime = std::localtime(&now); // Convert to local
-    std::ostringstream oss;
-    oss << std::put_time(localTime, "%Y-%m-%d"); // Formatting
-    return oss.str();
-}
+
 
 // Gets a Json file from a url
 // Some curl code taken from the internet. 
 // I added the parameters and modified functionality
-void getJson(string filename, string url, string token, string& readBuffer){ 
+void getJson(std::string filename, std::string url, std::string token, std::string& readBuffer){ 
     CURL* curl;
     CURLcode res;
 
@@ -116,12 +98,12 @@ void getJson(string filename, string url, string token, string& readBuffer){
             std::cerr << "curl_easy_perform() failed: " << curl_easy_strerror(res) << std::endl;
         } else {
             // Save the received JSON data to a file
-            string total_name = "json/" + filename + ".json";
+            std::string total_name = "../json/" + filename + ".json";
             std::ofstream outFile(total_name);
             if (outFile.is_open()) {
                 outFile << readBuffer;
                 outFile.close();
-                //std::cout << "JSON data saved to json/" << name << ".json" << std::endl;
+                //std::cout << "JSON data saved to json/" << filename << ".json" << std::endl;
             } else {
                 std::cerr << "Failed to open " << filename << ".json for writing" << std::endl;
             }

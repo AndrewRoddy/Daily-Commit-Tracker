@@ -1,8 +1,4 @@
-#include <windows.h>
-#include <shellapi.h>
-#include <tchar.h>
-#include <iostream>
-#include <string>
+
 
 #include "..\\include\\tray.hpp"
 

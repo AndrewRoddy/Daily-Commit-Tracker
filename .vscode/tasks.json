@@ -7,9 +7,24 @@
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
+
+                // .cpp files
                 "${workspaceFolder}\\src\\main.cpp",
-                "${workspaceFolder}\\src\\pather.cpp",
                 "${workspaceFolder}\\src\\tokens.cpp",
+                "${workspaceFolder}\\src\\tray.cpp",
+                "${workspaceFolder}\\src\\tzone.cpp",
+                "${workspaceFolder}\\src\\tracker.cpp",
+
+                // curl
+                "-I${workspaceFolder}\\lib\\curl-8.10.1_1-win64-mingw\\include",   // Include curl headers
+                "-L${workspaceFolder}\\lib\\curl-8.10.1_1-win64-mingw\\lib",       // Library path for curl
+                "-lcurl", // Link with curl library
+                "-lshell32", // Link with Shell32.lib
+
+                // Makes it so a console doesn't open when running program
+                // Also makes it so VsCode console doesn't print anything
+                //"-mwindows",
+
                 "-o",
                 "${workspaceFolder}\\bin\\Daily-Commit-Tracker.exe"
             ],

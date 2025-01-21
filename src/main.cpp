@@ -1,5 +1,11 @@
 #include <iostream>
 #include <vector>
+#include <string>
+#include <chrono> // For sleep timer
+#include <thread> // Used in sleep timer
+//#include <sstream> // For concatenating times
+
+//#include <ctime> // Gets today's time
 
 //#include <string>
 //#include <vector>
@@ -7,45 +13,47 @@
 //#include <fstream> // File IO
 //#include "..\\lib\\nlohmann\\json.hpp" // Read .json files
 //#include <filesystem> // Checks for where code is being run // Just to check for TOKEN.env
-//#include <ctime> // Gets today's time
-//#include <sstream> // For concatenating times
+
 //#include <unordered_map>
-//#include <chrono>
-//#include <thread>
 
 /*
-//#include "..\\include\\tzone.hpp"
-///#include "..\\include\\tracker.hpp"
-//#include "..\\include\\tray.hpp"
-//#include "..\\include\\tokens.hpp"
+
+
+//#include "..\\include\\pather.hpp"
 */
 
-#include "..\\include\\pather.hpp"
+#include "..\\include\\tracker.hpp"
+#include "..\\include\\tokens.hpp"
+#include "..\\include\\tray.hpp"
+#include "..\\include\\tzone.hpp"
 
 int main() {
-    std::cout << "HI" << std::endl;
-
+    std::cout << "Start:" << std::endl;
     
-    std::cout << fix_path("cacert.pem");
-    
-    
-    
-    /*
     token_check(); // Checks and creates tokens
-    string token = getToken(); // Gets the current token
+    
+    std::string token = getToken(); // Gets the current token
 
+    
     // Tray Icon Functions
+    std::cout << "Loading Tray." << std::endl;
     WNDCLASS wc = trayStart();
     HWND hwnd = createWindow();
-    HICON hIcon = createIcon("assets\\icons\\32x\\Loading.ico");
+    HICON hIcon = createIcon("..\\assets\\icons\\32x\\Loading.ico");
     NOTIFYICONDATA nid = createData(hwnd, hIcon);
-
+    
+    
     // *Start at high number to check for commits before waiting
     int second_loop = 60; // Second loop index 
     int check_interval = 30; // The amount of seconds between .json checks
-    string today; bool commit; MSG msg; // Message Loop
+    std::string today;
+    bool commit;
+    MSG msg; // Message Loop
+    
+    std::cout << "Starting Loop." << std::endl;
 
     while (true){
+        
         // Checks for if the user presses the icon.
          
         //GetMessage() pauses the program if queue is empty
@@ -55,26 +63,31 @@ int main() {
             TranslateMessage(&msg);
             DispatchMessage(&msg);
         }
-
+        
         // Checks for new commits every 30 seconds.
         second_loop += 1;
         if (second_loop >= 30){ // Checks
+        
             today = getToday(); // Gets current day
-            cout << today; // Prints current date to console
+            std::cout << today; // Prints the current day
+            
+            
             try {
                 commit = checkAllCommit(today, token); // True if commit today
             } catch(...) { // I know this is bad but I need to use it
                 std::this_thread::sleep_for(std::chrono::seconds(5)); // Wait 5 seconds before trying again
                 continue;
             }
+            
             removeIcon(nid, hIcon); // Clears old icon to show new
-            if (commit){ cout << " Yes" << endl; // Yes Commit -> Green Box
-                hIcon = createIcon("assets\\icons\\32x\\Green.ico");
-            } else { cout << " No" << endl; // No Commit -> Empty Box
-                hIcon = createIcon("assets\\icons\\32x\\Empty.ico");
+            if (commit){ std::cout << " Yes" << std::endl; // Yes Commit -> Green Box
+                hIcon = createIcon("..\\assets\\icons\\32x\\Green.ico");
+            } else { std::cout << " No" << std::endl; // No Commit -> Empty Box
+                hIcon = createIcon("..\\assets\\icons\\32x\\Empty.ico");
             }
             nid = createData(hwnd, hIcon); // Loads the next icon
             second_loop = 0; // Resets second loop
+            
         }
 
         // Sleep for 1 second
@@ -84,7 +97,7 @@ int main() {
     }
     
     return 0;
-    */
+    
     int a; std::cin >> a;
     return 0;
 }
