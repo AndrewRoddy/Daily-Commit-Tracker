@@ -1,6 +1,12 @@
 # Daily-Commit-Tracker
 
-#### Liscense: All Rights Reserved
+# **This Repository as Been Archived!**
+I am planning on selling this software in the future. It wouldn't really be a good idea to have this code public while I work on it lol. This project started out as a way to learn C++ and has turned into a lot more.
+
+# What I learned...
+Throughout creating this project I learned how to call API's in C++, properly connect libraries through the `tasks.json`, properly use relative paths, project file structures, use the windows tray. I am still learning to use Make to statically link the files and store them in the `.exe` file directly but that will be done in the private repo.
+
+Overall what this project taught me most was how effective using C++ is for creating real deployable software. 
 
 ## App Installation
 ###### **Github Access Token**
@@ -15,7 +21,6 @@ If you want to count commits for private repositories use this method
 7. Generate Token
 8. Place your token in the "TOKEN.env" file
 
-
 ## Binary Installation / Instructions
 ###### **libcurl**
 1. Download libcurl `curl-8.10.1`
@@ -27,8 +32,8 @@ If you want to count commits for private repositories use this method
 4. Run `curl.exe` inside `bin\`
 5. Add the bin folder to your system environment variables under path
  - `{Whatever path you need}\Daily-Commit-Tracker\bin\curl-8.10.1_1-win64-mingw\bin`
-
-6. You don't need to do this anymore unless it bugs... Make a `cacert.pem` file and place it in the `Daily-Commit-Tracker` folder
+6. I added this functionality already but if you want to know where I got it:
+  Make a `cacert.pem` file and place it in the `Daily-Commit-Tracker` folder
  - [Site Link](https://curl.se/docs/caextract.html)
  - [Download Link](https://curl.se/ca/cacert.pem)
 
@@ -46,7 +51,6 @@ Daily-Commit-Tracker
  - [Download Link](https://github.com/nlohmann/json/releases/download/v3.11.3/json.hpp)
 2. Place it in the nlohmann folder
 
-
 ###### **shell32.lib**
 1. Add `"-lshell32",` to tasks.json
 
@@ -61,6 +65,7 @@ I downloaded Inno from here [Site Link](https://jrsoftware.org/isdl.php)
    - if it isn't a link/shortcut this will not work 
  - After this it *should* open on startup although I am not certain lol 
  - (I will try and make a way for the user to press a button and do this)
+  - Example: `C:\Users\[YourUserName]\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup`
 
 ## TODO
 1. [X] Create anything in the taskbar tray
@@ -68,17 +73,7 @@ I downloaded Inno from here [Site Link](https://jrsoftware.org/isdl.php)
 3. [X] Fixes file structure
 4. [X] Create method to type in or change information on first startup
 5. [X] Add an icon for when no connection
-5.1. Change file paths to be based on the Daily-Commit-Tracker folder itself to allow running the .exe to be consistent. Remove stuff from tasks.json that are stopping the code from running
-6. Create GUI element that runs on first open or when green square is pressed
-7. Add Minecraft Integration / Kahn Academy Integration / Quizlet maybe
-8. Link Patreon subscription status to product
-9. Add texture changes available for subscribers (icon color / style)
+6. [X] Change file paths to be based on the root folder to allow running the .exe to be consistent. 
+7. [X] Make Private Repository to add this to my patreon
 
-*Anytime*
- - Optimize Json getting order (make recent commits more favorable)
- - Add a commit "streak" feature
- - 4+ Allow option to show number of days in a row you commited in the bottom right
- - Delete old .json files on checking
- - Stop checking for commits if day is the same and commited today
- - Open on startup
-   - `C:\Users\Andre\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup`
+# Liscense: All Rights Reserved

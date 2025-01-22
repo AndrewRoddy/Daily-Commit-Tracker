@@ -23,7 +23,7 @@
 
                 // Makes it so a console doesn't open when running program
                 // Also makes it so VsCode console doesn't print anything
-                //"-mwindows",
+                "-mwindows",
 
                 "-o",
                 "${workspaceFolder}\\bin\\Daily-Commit-Tracker.exe"
