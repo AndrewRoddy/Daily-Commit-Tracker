@@ -8,10 +8,6 @@ Throughout creating this project I learned how to call API's in C++, properly co
 
 Overall what this project taught me most was how effective using C++ is for creating real deployable software. 
 
-# **This Repository as Been Archived!**
-I am planning on selling this software in the future. It wouldn't really be a good idea to have this code public while I work on it lol. This project started out as a way to learn C++ and has turned into a lot more.
-
-
 # Purpose
 This is a tray icon that appears green if the user has done a GitHub commit today. It appears gray if the user has not. You must give the application permissions through a GitHub token. The user must also install the necessary libraries and more. I will fix these problems in the next release!
 
@@ -73,14 +69,5 @@ I downloaded Inno from here [Site Link](https://jrsoftware.org/isdl.php)
  - After this it *should* open on startup although I am not certain lol 
  - (I will try and make a way for the user to press a button and do this)
   - Example: `C:\Users\[YourUserName]\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup`
-
-## Completed To-Do
-1. [X] Create anything in the taskbar tray
-2. [X] Implement taskbar changes to code
-3. [X] Fix file structure
-4. [X] Create method to type in or change information on first startup
-5. [X] Add an icon for when no connection
-6. [X] Change file paths to be based on the root folder to allow running the .exe to be consistent. 
-7. [X] Make Private Repository to add this to my patreon
 
 # Liscense: All Rights Reserved
