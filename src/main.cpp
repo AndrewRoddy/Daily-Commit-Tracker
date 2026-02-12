@@ -3,24 +3,6 @@
 #include <string>
 #include <chrono> // For sleep timer
 #include <thread> // Used in sleep timer
-//#include <sstream> // For concatenating times
-
-//#include <ctime> // Gets today's time
-
-//#include <string>
-//#include <vector>
-//#include <curl/curl.h> // Used for HTTP requests
-//#include <fstream> // File IO
-//#include "..\\lib\\nlohmann\\json.hpp" // Read .json files
-//#include <filesystem> // Checks for where code is being run // Just to check for TOKEN.env
-
-//#include <unordered_map>
-
-/*
-
-
-//#include "..\\include\\pather.hpp"
-*/
 
 #include "..\\include\\tracker.hpp"
 #include "..\\include\\tokens.hpp"
