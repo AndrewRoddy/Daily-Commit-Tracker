@@ -11,3 +11,8 @@ cacert.pem
 
 # Removed .vscode folder
 .vscode
+
+settings.local.json
+
+# Hides binaries
+# *.exe
