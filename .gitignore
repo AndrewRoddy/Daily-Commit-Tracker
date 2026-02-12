@@ -15,4 +15,4 @@ cacert.pem
 settings.local.json
 
 # Hides binaries
-# *.exe
+*.exe
