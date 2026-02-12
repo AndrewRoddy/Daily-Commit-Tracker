@@ -9,4 +9,5 @@ BackupToken.env
 
 cacert.pem
 
-..vscode
+# Removed .vscode folder
+.vscode
