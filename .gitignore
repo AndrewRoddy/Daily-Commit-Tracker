@@ -4,7 +4,6 @@ curl
 
 curl-ca-bundle.crt
 
-TOKENS.env
 BackupToken.env
 
 cacert.pem
